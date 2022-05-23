@@ -1,0 +1,330 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9D86FE7D-3877-402E-8D0E-6308B73F3309}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>quanlibanhang</RootNamespace>
+    <AssemblyName>quanlibanhang</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>
+    </StartupObject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="capnhatacc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="capnhatacc.Designer.cs">
+      <DependentUpon>capnhatacc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Class1.cs" />
+    <Compile Include="createacc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="createacc.Designer.cs">
+      <DependentUpon>createacc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="danhmuckhachhang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="danhmuckhachhang.Designer.cs">
+      <DependentUpon>danhmuckhachhang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="danhmucnhsnvien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="danhmucnhsnvien.Designer.cs">
+      <DependentUpon>danhmucnhsnvien.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form3.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form3.Designer.cs">
+      <DependentUpon>Form3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form4.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form4.Designer.cs">
+      <DependentUpon>Form4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form5.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form5.Designer.cs">
+      <DependentUpon>Form5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="hoadon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="hoadon.Designer.cs">
+      <DependentUpon>hoadon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MENU.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MENU.Designer.cs">
+      <DependentUpon>MENU.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="qlbanhangDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>qlbanhangDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="quenmk.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="quenmk.Designer.cs">
+      <DependentUpon>quenmk.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="capnhatacc.resx">
+      <DependentUpon>capnhatacc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="createacc.resx">
+      <DependentUpon>createacc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="danhmuckhachhang.resx">
+      <DependentUpon>danhmuckhachhang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="danhmucnhsnvien.resx">
+      <DependentUpon>danhmucnhsnvien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form3.resx">
+      <DependentUpon>Form3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form4.resx">
+      <DependentUpon>Form4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form5.resx">
+      <DependentUpon>Form5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="hoadon.resx">
+      <DependentUpon>hoadon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MENU.resx">
+      <DependentUpon>MENU.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="quenmk.resx">
+      <DependentUpon>quenmk.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="qlbanhangDataSet.xsc">
+      <DependentUpon>qlbanhangDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="qlbanhangDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>qlbanhangDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="qlbanhangDataSet.xss">
+      <DependentUpon>qlbanhangDataSet.xsd</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\101746348_265830954632906_2885394192350052352_n.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\101746348_265830954632906_2885394192350052352_n1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\103106644_271000670681841_7631544987165084212_n.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\103419937_1896029317200204_4820255377494743722_n.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\104474373_279713966482989_665623644424487267_n.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\104802004_3066786870077240_6242164845899822084_n.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\104940139_1768279189980049_777414289634688563_n.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\107607119_1220930731575566_4375028894449214557_n.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\107805326_721202078711369_5237229755089079036_n.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\103670166_703990863720248_7941266939541251233_n.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\107668506_288526835724330_7337323111132855789_n.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\107828253_218207609330166_1475767129358879112_n.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\107836955_713720362796153_2034375022358404543_n.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\41085366_1962856870686487_5315822739552993280_n.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\80055241_537219543537212_2909371882367090688_n.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\109060686_2584487678533621_4286993009034228884_n1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\107833952_2990981094283647_634754867931714858_n1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\107943052_332838201058484_3260087807232808107_n1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\109887665_2396247847349826_7185502050163398393_n1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\108118449_317930489375378_343712601849213515_n2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\83930263_2475799152677897_2598998402888892416_n1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\100060865_585466758748175_8320271728836083712_n1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\101197904_310671876595314_6533892292530213718_n1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\64238805_2224976974253256_659187251263045632_n2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\89060247_1049880122062414_6815122370055897088_n2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\103726883_316155519385693_3645751451014160480_n1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\104003344_702692930306514_5633049298633917754_n1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\107757328_308016110565668_2864493662587088080_n1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\107810217_1142734896102676_1610783215569738211_n1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\107866745_2761887010701618_6042220849989241032_n1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\107887802_230386877938261_5586785257932256796_n1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\107919169_580983745934137_8976924598474795031_n1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\107957451_319275909479320_4061326691309134011_n1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\107957457_2344256439216012_2340946205240599100_n1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\108853948_1555843657930558_8735576542184286435_n1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\106112380_1214311175591236_7414086440709944322_n.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
