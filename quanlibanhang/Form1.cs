@@ -1,132 +1,152 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace quanlibanhang
 {
-    public partial class Form1 : Form
+    public partial class Form1 : MetroFramework.Forms.MetroForm
     {
+        Config conf = Config.getInstance();
         public Form1()
         {
             InitializeComponent();
+            conf.Init();
         }
-        private void frmLogin()
+        public bool IsNumber(string pValue)
         {
-            Form frm = new Form3();
-            frm.ShowDialog();
+            foreach (Char c in pValue)
+            {
+                if (!Char.IsDigit(c))
+                    return false;
+            }
+            return true;
         }
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            frmLogin();
-        }
+        bool them = false, sua = false;
 
-        private void hệThốngToolStripMenuItem_Click(object sender, EventArgs e)
+        private void btReload_Click(object sender, EventArgs e)
         {
-
-        }
-        void XemDanhMuc(int intDanhMuc)
-        {
-            Form frm = new Form5();
-            frm.Text = intDanhMuc.ToString();
-            frm.ShowDialog();
-        }
-        private void đổiMậtToolStripMenuItem_Click(object sender, EventArgs e)
-        {
+            loadData();
 
         }
 
-        private void đăngNhậpToolStripMenuItem_Click(object sender, EventArgs e)
+        private void loadData()
         {
-            frmLogin();
+            metroGridNv.DataSource = conf.simpleQuery2("SELECT dbo.nhanvien.idnv,dbo.taikhoan.idtk,tennv,sdt,diachi,email,username,passw,roles,dbo.nhanvien.trangthai AS TrangthaiNV FROM dbo.nhanvien,dbo.taikhoan,dbo.dangnhap WHERE dbo.nhanvien.idnv = dbo.dangnhap.idnv AND dbo.taikhoan.idtk = dbo.dangnhap.idtk", 0);
         }
 
-        private void thoátToolStripMenuItem_Click(object sender, EventArgs e)
+        private void metroGridNv_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            DialogResult traloi;
-            traloi = MessageBox.Show("Chắc không?", "Trả lời",
-            MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-            if (traloi == DialogResult.OK)
-                Application.Exit();
+            int r = metroGridNv.CurrentCell.RowIndex;
+            metroTbTenNv.Text = metroGridNv.Rows[r].Cells[2].Value.ToString();
+            metroTbPhone.Text = metroGridNv.Rows[r].Cells[3].Value.ToString();
+            metroTbAdress.Text = metroGridNv.Rows[r].Cells[4].Value.ToString();
+            metroTbEmail.Text = metroGridNv.Rows[r].Cells[5].Value.ToString();
+            metroTbUserName.Text = metroGridNv.Rows[r].Cells[6].Value.ToString();
+            metroTbPass.Text = metroGridNv.Rows[r].Cells[7].Value.ToString();
+            metroTbConfirmPass.Text = metroGridNv.Rows[r].Cells[7].Value.ToString();
+
+            if (metroGridNv.Rows[r].Cells[8].Value.ToString() == "False")
+                metroRbNoAdmin.Checked = true;
+            else metroRbAdmin.Checked = true;
+
+            if (metroGridNv.Rows[r].Cells[9].Value.ToString() == "False")
+                metroRbDead.Checked = true;
+            else metroRbActive.Checked = true;
         }
 
-        private void danhMụcThànhPhốToolStripMenuItem_Click(object sender, EventArgs e)
+        private void metroButton1_Click(object sender, EventArgs e)
         {
-            XemDanhMuc(1);
+            metroBtAddNv.Enabled = false;
+            sua = true;
         }
 
-        private void danhMụcKháchHàngToolStripMenuItem_Click(object sender, EventArgs e)
+        private void metroBtClear_Click(object sender, EventArgs e)
         {
-            XemDanhMuc(2);
+            metroTbTenNv.Clear();
+            metroTbPhone.Clear();
+            metroTbAdress.Clear();
+            metroTbEmail.Clear();
+            metroTbUserName.Clear();
+            metroTbPass.Clear();
+            metroTbConfirmPass.Clear();
+            metroRbActive.Checked = false;
+            metroRbDead.Checked = false;
+            metroRbAdmin.Checked = false;
+            metroRbNoAdmin.Checked = false;
         }
 
-        private void danhMụcNhânViênToolStripMenuItem_Click(object sender, EventArgs e)
+        private void metroBtAddNv_Click(object sender, EventArgs e)
         {
-            XemDanhMuc(3);
+            metroBtEditNv.Enabled = false;
+            them = true;
+            metroBtSave.Enabled = true;
         }
 
-        private void danhMụcSảnPhẩmToolStripMenuItem_Click(object sender, EventArgs e)
+        private void metroBtSave_Click(object sender, EventArgs e)
         {
-            XemDanhMuc(4);
+            if (them)
+            {
+                if (metroTbTenNv.Text != "" && metroTbPhone.Text != "" && metroTbAdress.Text != "" && metroTbEmail.Text != "" && metroTbUserName.Text != "" && metroTbPass.Text != "" && metroTbConfirmPass.Text != "" && IsNumber(metroTbPhone.Text) && metroTbPass.Text == metroTbConfirmPass.Text)
+                {
+                    int danglam = metroRbActive.Checked == true ? 1 : 0;
+                    int admin = metroRbAdmin.Checked == true ? 1 : 0;
+
+                    conf.simpleQuery2("INSERT INTO dbo.nhanvien(tennv,sdt,diachi,email,trangthai)VALUES(N'" + metroTbTenNv.Text + "'," + metroTbPhone.Text + ",N'" + metroTbAdress.Text + "','" + metroTbEmail.Text + "'," + danglam + ")", 1);
+                    conf.simpleQuery2("INSERT INTO dbo.taikhoan(username,passw,roles,trangthai)VALUES('" + metroTbUserName.Text + "','" + metroTbPass.Text + "'," + admin + ",1)", 1);
+
+                    int idnv = conf.simpleQuery2("select top 1 idnv FROM dbo.nhanvien order by idnv DESC", 0).Rows[0].Field<int>("idnv");
+                    int idtk = conf.simpleQuery2("select top 1 idtk FROM dbo.taikhoan order by idtk DESC", 0).Rows[0].Field<int>("idtk");
+
+                    conf.simpleQuery2("INSERT INTO dbo.dangnhap(idnv,idtk)VALUES(" + idnv + "," + idtk + ")", 1);
+
+                    MessageBox.Show("Them thanh cong roi be oi!");
+                    loadData();
+                    metroBtEditNv.Enabled = true;
+                    metroBtSave.Enabled = false;
+                    them = false;
+                }
+                else MessageBox.Show("Không ổn rồi bé ơi, nhập sai một trường thông tin nào đó mất rồi!, Hãy nhập đúng nhé", "Thông báo");
+            }
+            else if (sua)
+            {
+                if (metroTbTenNv.Text != "" && metroTbPhone.Text != "" && metroTbAdress.Text != "" && metroTbEmail.Text != "" && metroTbUserName.Text != "" && metroTbPass.Text != "" && metroTbConfirmPass.Text != "" && IsNumber(metroTbPhone.Text) && metroTbPass.Text == metroTbConfirmPass.Text)
+                {
+                    int danglam = metroRbActive.Checked == true ? 1 : 0;
+                    int admin = metroRbAdmin.Checked == true ? 1 : 0;
+
+                    conf.simpleQuery2("UPDATE dbo.nhanvien SET tennv = N'" + metroTbTenNv.Text + "', sdt = " + metroTbPhone.Text + ",diachi = N'" + metroTbAdress.Text + "',email = '" + metroTbEmail.Text + "',trangthai = " + danglam + " WHERE email = '" + metroTbEmail.Text + "'", 1);
+                    conf.simpleQuery2("UPDATE dbo.taikhoan SET username = '" + metroTbUserName.Text + "', passw='" + metroTbPass.Text + "',roles=" + admin + ", trangthai=" + danglam + " WHERE username = '" + metroTbUserName.Text + "'", 1);
+
+                    MessageBox.Show("Sua thanh cong roi be oi!");
+                    loadData();
+                    metroBtAddNv.Enabled = true;
+                    metroBtSave.Enabled = false;
+                    sua = false;
+                }
+                else MessageBox.Show("Không ổn rồi bé ơi, nhập sai một trường thông tin nào đó mất rồi!, Hãy nhập đúng nhé", "Thông báo");
+
+            }
         }
 
-        private void danhMụcHóaToolStripMenuItem_Click(object sender, EventArgs e)
+        private void metroBtCancel_Click(object sender, EventArgs e)
         {
-            XemDanhMuc(5);
+            metroBtAddNv.Enabled = true;
+            metroBtEditNv.Enabled = true;
+            them = false;
+            sua = false;
         }
 
-        private void danhMụcChiTiếtHóaToolStripMenuItem_Click(object sender, EventArgs e)
+        private void metroBtEditNv_Click(object sender, EventArgs e)
         {
-            XemDanhMuc(6);
+            metroBtAddNv.Enabled = false;
+            sua = true;
+            metroBtSave.Enabled = true;
         }
 
-        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        private void metroBtReload_Click(object sender, EventArgs e)
         {
-            Form frm = new Form4();
-            frm.Text = "Quản lí danh mục thành phố";
-            frm.ShowDialog();
+            loadData();
         }
 
-        private void đăngNhậpToolStripMenuItem_Click_1(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void đăngNhậpToolStripMenuItem_Click_2(object sender, EventArgs e)
-        {
-            frmLogin();
-        }
-
-        private void toolStripMenuItem3_Click(object sender, EventArgs e)
-        {
-            Form frmm = new danhmuckhachhang();
-            frmm.ShowDialog();
-        }
-
-        private void đổiMậtToolStripMenuItem_Click_1(object sender, EventArgs e)
-        {
-            Form frm5 = new capnhatacc();
-            frm5.Text = "ĐỔI MẬT KHẨU";
-            frm5.ShowDialog();
-        }
-
-        private void tạoTàiKhoảnToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Form frm5 = new createacc();
-            
-            frm5.ShowDialog();
-        }
-
-        private void toolStripMenuItem4_Click(object sender, EventArgs e)
-        {
-            Form frm7 = new danhmucnhsnvien();
-
-            frm7.ShowDialog();
-        }
     }
 }

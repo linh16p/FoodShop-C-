@@ -16,7 +16,7 @@ namespace quanlibanhang
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new hoadon());
+            Application.Run(new Form3());
         }
     }
 }
